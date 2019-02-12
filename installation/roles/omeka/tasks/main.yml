@@ -9,7 +9,7 @@
 - name: Clone dc-omeka Github repository
   git:
     repo: https://github.com/WSULib/dc-omeka.git
-    dest: /var/www/omeka
+    dest: /opt/dc-omeka
     version: "{{ git_branch }}"
   when: omeka_installed.stat.exists == False
 
