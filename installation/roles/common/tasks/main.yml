@@ -61,4 +61,10 @@
   cron:
     name: "MySQL backup"
     special_time: weekly
-    job: "docker exec some-mysql sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /opt/backups/all-databases-$(date "+%b_%d_%Y_%H_%M_%S").sql"
+    job: "docker exec some-mysql sh -c 'exec mysqldump --all-databases -uroot -p"{{ mysql_password }}"' > /opt/backups/all-databases-$(date "+%b_%d_%Y_%H_%M_%S").sql"
+
+- name: Configure Cron job for backing up Solr data
+  cron:
+    name: "Solr backup"
+    special_time: weekly
+    job: "http://localhost:8983/solr/omeka/replication?command=backup&location=/opt/backups"

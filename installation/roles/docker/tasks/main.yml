@@ -35,28 +35,3 @@
 - name: install Python wrapper for docker
   pip:
     name: docker
-
-- name: install Solr
-  docker_image:
-    name: solr:7.6.0
-
-- name: Load up Omeka Core
-  copy:
-    src: roles/solr/files/solr/omeka
-    dest: /opt/solr
-    owner: 8983
-    group: 8983
-
-- name: Setup Solr within Systemd
-  template:
-    src: solr.service
-    dest: /etc/systemd/system/solr.service
-
-- name: Reload Systemd
-  systemd:
-    daemon_reload: yes
-
-- name: Start Solr
-  systemd:
-    name: solr
-    state: started
