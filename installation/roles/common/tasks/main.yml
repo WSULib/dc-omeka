@@ -49,3 +49,16 @@
    shell: /bin/bash
    password: "{{ ssh_password | password_hash('sha512') }}"
    update_password: on_create
+
+- name: Create back up directory
+  file:
+    path: /opt/backups
+    state: directory
+    owner: omeka
+    group: omeka
+
+- name: Configure Cron job for backing up MySQL data
+  cron:
+    name: "MySQL backup"
+    special_time: weekly
+    job: "docker exec some-mysql sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /opt/backups/all-databases-$(date "+%b_%d_%Y_%H_%M_%S").sql"
