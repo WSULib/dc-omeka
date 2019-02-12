@@ -1,0 +1,82 @@
+<?php
+$this->htmlElement('body')->appendAttribute('class', 'jobs browse');
+$escape = $this->plugin('escapeHtml');
+$sortHeadings = [
+    [
+        'label' => $this->translate('ID'),
+        'value' => 'id'
+    ],
+    [
+        'label' => $this->translate('Class'),
+        'value' => 'class'
+    ],
+    [
+        'label' => $this->translate('Status'),
+        'value' => 'status'
+    ],
+    [
+        'label' => $this->translate('Owner'),
+        'value' => 'owner'
+    ]
+];
+?>
+
+<?php echo $this->pageTitle($this->translate('Jobs')); ?>
+
+<?php if (count($jobs)): ?>
+
+<div class="browse-controls">
+    <?php echo $this->pagination(); ?>
+    <?php echo $this->sortSelector($sortHeadings); ?>
+</div>
+<?php $this->trigger('view.browse.before'); ?>
+<table class="tablesaw" data-tablesaw-mode="stack">
+    <thead>
+        <tr>
+            <th><?php echo $this->translate('ID'); ?></th>
+            <th><?php echo $this->translate('Class'); ?></th>
+            <th><?php echo $this->translate('Status'); ?></th>
+            <th><?php echo $this->translate('Owner'); ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($jobs as $job): ?>
+        <?php
+        if ($owner = $job->owner()) {
+            $ownerText = $this->hyperlink($owner->email(), $this->url(
+                'admin/id',
+                [
+                    'controller' => 'user',
+                    'action' => 'show',
+                    'id' => $owner->id()]
+                )
+            );
+        } else {
+            $ownerText = $this->translate('[no owner]');
+        }
+        ?>
+        <tr>
+            <td>
+                <?php echo $job->link($escape($job->id())); ?>
+            </td>
+            <td><?php echo $escape($job->jobClass()); ?></td>
+            <td><?php echo $escape($this->translate($job->statusLabel())); ?></td>
+            <td><?php echo $ownerText; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<?php $this->trigger('view.browse.after'); ?>
+<div class="browse-controls">
+    <?php echo $this->pagination(); ?>
+</div>
+
+<?php else: ?>
+
+<div class="no-resources">
+    <p><?php echo $this->translate('Omeka could not find any jobs.'); ?></p>
+</div>
+
+<?php endif; ?>
+
+

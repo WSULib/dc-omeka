@@ -1,0 +1,51 @@
+---
+# from update-upgrade.yml
+  # This task updates servers that use 'yum' and RPM packages
+  # by looking for CentOS or RedHat as a distribution name. This
+  # will may also pick up modern OracleLinux but OL has a lot of
+  # different strings.
+
+- name: gather facts
+  setup:
+
+- name: .rpm upgrade server
+  yum: >
+    update_cache=yes
+    name=*
+    state=latest
+    update_cache=yes
+  when: >
+    ansible_distribution == 'CentOS'
+    or
+    ansible_distribution == 'RedHat'
+
+# This task updates servers that use 'apt' and DEB packages
+# by looking for Debian or Ubuntu as a distribution name.
+- name: .deb do update and upgrade
+  apt: >
+    update_cache=yes
+    cache_valid_time=1200
+    upgrade=safe
+  when: >
+    ansible_distribution == 'Debian'
+    or
+    ansible_distribution == 'Ubuntu'
+
+# from bootstrap.yml
+- name: install latest version of a series of packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ basic_packages }}"
+
+- group:
+   name: admin
+   state: present
+
+- user:
+   name: omeka
+   comment: "Omeka User"
+   groups: admin
+   shell: /bin/bash
+   password: "{{ ssh_password | password_hash('sha512') }}"
+   update_password: on_create

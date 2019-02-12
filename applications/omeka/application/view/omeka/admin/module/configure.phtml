@@ -1,0 +1,12 @@
+<?php
+$this->htmlElement('body')->appendAttribute('class', 'modules configure');
+?>
+
+<?php echo $this->pageTitle($module->getName(), 1, $this->translate('Modules'), $this->translate('Configure')); ?>
+
+<form method="post">
+<div id="page-actions">
+    <button><?php echo $this->translate('Submit'); ?></button>
+</div>
+<?php echo $configForm; ?>
+</form>

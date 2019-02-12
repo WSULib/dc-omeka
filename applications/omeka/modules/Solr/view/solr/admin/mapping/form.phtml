@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ * @var \Solr\Form\Admin\SolrMappingForm $form
+ * @var string $schema
+ * @var array $sourceLabels
+ */
+
+$translate = $this->plugin('translate');
+$this->headLink()->appendStylesheet($this->assetUrl('css/solr-admin.css', 'Solr'));
+$this->headScript()->appendScript(
+    'var schema = ' . json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ';
+var sourceLabels = ' . json_encode($sourceLabels, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ';'
+);
+$this->headScript()->appendFile($this->assetUrl('js/solr-admin.js', 'Solr'));
+?>
+
+<?php $form->prepare(); ?>
+<?php echo $this->form()->openTag($form); ?>
+<div id="page-actions">
+    <button><?php echo $translate('Save'); ?></button>
+</div>
+<?php
+echo $this->formRow($form->get('o:source'));
+echo $this->formRow($form->get('o:field_name'));
+echo $this->formCollection($form->get('o:settings'));
+echo $this->formRow($form->get('csrf'));
+
+$this->trigger('view.add.form.after');
+?>
+<?php echo $this->form()->closeTag(); ?>
+
+<?php $this->trigger('view.add.after'); ?>

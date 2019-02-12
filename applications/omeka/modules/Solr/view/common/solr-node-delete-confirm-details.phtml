@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ * @var int $totalSearchPages
+ * @var int $totalSearchIndexes
+ * @var int $totalSolrMappings
+ */
+
+$translate = $this->plugin('translate');
+?>
+<?php if ($totalSearchIndexes || $totalSearchPages || $totalSolrMappings): ?>
+<h4><?php echo $translate('WARNING'); ?></h4>
+<p><?php
+echo sprintf($translate('This will delete all search indexes (%d), all search pages (%d), and all Solr mappings (%d) that use this Solr node.'),
+    $totalSearchIndexes, $totalSearchPages, $totalSolrMappings);
+?></p>
+<p><?php
+echo sprintf($translate('To keep search indexes and pages, create a new node and set it for the related indexes before deletion.'),
+    $totalSearchIndexes, $totalSearchPages, $totalSolrMappings);
+?></p>
+<?php else: ?>
+<p><?php
+echo $translate('There is no search indexes, search pages, neither Solr mappings associated with this Solr node.');
+?></p>
+<?php endif; ?>

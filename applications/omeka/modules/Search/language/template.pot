@@ -1,0 +1,278 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-29 18:52+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Api/Representation/SearchIndexRepresentation.php:98
+msgid "[No adapter]"
+msgstr ""
+
+#: src/Form/Admin/SearchPageConfigureForm.php:70
+msgid "Facets"
+msgstr ""
+
+#: src/Form/Admin/SearchPageConfigureForm.php:98
+#: src/Form/Admin/SearchPageConfigureForm.php:148
+msgid "Enabled"
+msgstr ""
+
+#: src/Form/Admin/SearchPageConfigureForm.php:106
+#: src/Form/Admin/SearchPageConfigureForm.php:156
+msgid "Weight"
+msgstr ""
+
+#: src/Form/Admin/SearchPageConfigureForm.php:120
+msgid "Sort fields"
+msgstr ""
+
+#: src/Form/Admin/SearchPageConfigureForm.php:204
+msgid "Form settings"
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:66
+msgid "The path to the search form."
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:67
+msgid "The site path will be automatically prepended."
+msgstr ""
+
+#: view/search/admin/index/browse.phtml:34
+msgid "Search manager"
+msgstr ""
+
+#: view/search/admin/index/browse.phtml:71
+msgid "Reindex all"
+msgstr ""
+
+#: view/search/admin/index/browse.phtml:91
+msgid "No search indexes created yet."
+msgstr ""
+
+#: view/search/admin/index/browse.phtml:123
+msgid "Configure facets and sort fields"
+msgstr ""
+
+#: view/search/admin/index/browse.phtml:153
+msgid "No search pages created yet."
+msgstr ""
+
+#: view/search/admin/search-index/add.phtml:33
+msgid "Add search index"
+msgstr ""
+
+#: view/search/admin/search-index/add.phtml:37
+#: view/search/admin/search-page/add.phtml:37
+msgid "Add and configure"
+msgstr ""
+
+#: view/search/admin/search-index/edit.phtml:33
+msgid "Edit search index"
+msgstr ""
+
+#: view/search/admin/search-page/add.phtml:33
+msgid "Add search page"
+msgstr ""
+
+#: view/search/admin/search-page/configure.phtml:40
+msgid "Configure search page"
+msgstr ""
+
+#: view/search/admin/search-page/configure.phtml:44
+msgid "Save configuration"
+msgstr ""
+
+#: view/search/admin/search-page/edit.phtml:32
+msgid "Edit search page"
+msgstr ""
+
+#: view/search/facets.phtml:32
+msgid "Filters"
+msgstr ""
+
+#: view/search/index/search.phtml:82
+msgid "Your query returned no results"
+msgstr ""
+
+#: view/search/results-header.phtml:11
+msgid "Sort by"
+msgstr ""
+
+#: Module.php:444
+msgid "Search pages"
+msgstr ""
+
+#: Module.php:466
+msgid "Default search page"
+msgstr ""
+
+#: Module.php:467
+msgid "This search engine is used in the admin bar."
+msgstr ""
+
+#: Module.php:469
+msgid "Select the search engine for the admin bar..."
+msgstr ""
+
+#: src/Controller/Admin/SearchIndexController.php:54
+#: src/Controller/Admin/SearchIndexController.php:90
+#: src/Controller/Admin/SearchPageController.php:192
+#: src/Controller/IndexController.php:79
+msgid "There was an error during validation"
+msgstr ""
+
+#: src/Controller/Admin/SearchIndexController.php:59
+msgid "Search index created."
+msgstr ""
+
+#: src/Controller/Admin/SearchIndexController.php:80
+msgid "Adapter settings"
+msgstr ""
+
+#: src/Controller/Admin/SearchIndexController.php:97
+msgid "Search index successfully configured"
+msgstr ""
+
+#: src/Controller/Admin/SearchIndexController.php:118
+#, php-format
+msgid "Indexing started in %sjob %s%s"
+msgstr ""
+
+#: src/Controller/Admin/SearchIndexController.php:150
+msgid "Search index successfully deleted"
+msgstr ""
+
+#: src/Controller/Admin/SearchIndexController.php:152
+msgid "Search index could not be deleted"
+msgstr ""
+
+#: src/Controller/Admin/SearchPageController.php:57
+msgid "Search page created."
+msgstr ""
+
+#: src/Controller/Admin/SearchPageController.php:62
+msgid "Enable it in your site settings or in admin settings."
+msgstr ""
+
+#: src/Controller/Admin/SearchPageController.php:85
+msgid "Search page saved."
+msgstr ""
+
+#: src/Controller/Admin/SearchPageController.php:121
+msgid "Configuration saved."
+msgstr ""
+
+#: src/Controller/Admin/SearchPageController.php:146
+msgid "Search page successfully deleted"
+msgstr ""
+
+#: src/Controller/Admin/SearchPageController.php:148
+msgid "Search page could not be deleted"
+msgstr ""
+
+#: src/Controller/Admin/SearchPageController.php:204
+msgid "The page has been disabled in all sites."
+msgstr ""
+
+#: src/Controller/Admin/SearchPageController.php:208
+msgid "The page has been enabled in all sites."
+msgstr ""
+
+#: src/Controller/IndexController.php:72
+#, php-format
+msgid "Form adapter \"%s\" not found"
+msgstr ""
+
+#: src/Controller/IndexController.php:142
+msgid "Query error: "
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:54 src/Form/Admin/SearchIndexForm.php:53
+msgid "Name"
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:65
+msgid "Path"
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:78
+msgid "Index"
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:80
+msgid "Select an index below..."
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:91
+msgid "Form"
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:93
+msgid "Select a form below..."
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:104
+msgid "Enable / disable page"
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:105
+msgid "The admin settings are not modified."
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:107
+msgid "Disable in all sites"
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:108
+msgid "Don’t modify"
+msgstr ""
+
+#: src/Form/Admin/SearchPageForm.php:109
+msgid "Enable in all sites"
+msgstr ""
+
+#: src/Form/Admin/SearchPageConfigureForm.php:59
+msgid "Facet limit"
+msgstr ""
+
+#: src/Form/Admin/SearchPageConfigureForm.php:60
+msgid "The maximum number of values fetched for each facet"
+msgstr ""
+
+#: src/Form/Admin/SearchIndexForm.php:65
+msgid "Adapter"
+msgstr ""
+
+#: src/Form/Admin/SearchIndexForm.php:67
+msgid "Select an adapter below..."
+msgstr ""
+
+#: src/Form/Admin/SearchIndexConfigureForm.php:52
+msgid "Resources indexed"
+msgstr ""
+
+#: config/module.config.php:169
+msgid "Available"
+msgstr ""
+
+#: config/module.config.php:171
+msgid "Find resources..."
+msgstr ""
+
+#: config/module.config.php:172
+msgid "Find"
+msgstr ""

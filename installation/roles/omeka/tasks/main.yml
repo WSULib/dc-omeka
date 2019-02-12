@@ -1,0 +1,78 @@
+---
+
+- name: Is Omeka-S already installed?
+  stat:
+    path: /var/www/omeka
+  register: omeka_installed
+  changed_when: omeka_installed.stat.exists == False
+
+- name: Clone dc-omeka Github repository
+  git:
+    repo: https://github.com/WSULib/dc-omeka.git
+    dest: /var/www/omeka
+    version: "{{ git_branch }}"
+  when: omeka_installed.stat.exists == False
+
+- name: Set permissions
+  file:
+    path: /var/www/omeka
+    recurse: yes
+    owner: peacock
+    group: www-data
+
+- name: Copy the omeka.sql file to tmp
+  template:
+    src: omeka.sql
+    dest: /tmp/omeka.sql
+  when: omeka_installed.stat.exists == False
+
+- name: Prepare Database
+  mysql_db:
+    config_file: /root/.my.cnf
+    state: import
+    name: all
+    target: /tmp/omeka.sql
+  when: omeka_installed.stat.exists == False
+
+- name: Place Apache vhost file into the correct spot
+  template:
+    src: omeka.conf
+    dest: /etc/apache2/sites-available/omeka.conf
+  when: omeka_installed.stat.exists == False
+
+- name: Enable Apache vhost file
+  command: a2ensite omeka.conf
+  when: omeka_installed.stat.exists == False
+
+- name: Remove old/default vhost file
+  command: rm /etc/apache2/sites-available/000-default.conf
+  when: omeka_installed.stat.exists == False
+
+- name: Configure database.ini
+  template:
+    src: database.ini
+    dest: /var/www/omeka/config/database.ini
+  when: omeka_installed.stat.exists == False
+
+- name: Copy local.config.php
+  template:
+    src: local.config.php
+    dest: /var/www/omeka/config/local.config.php
+  when: omeka_installed.stat.exists == False
+
+- name: Reset permissions
+  file:
+    path: /var/www/omeka
+    recurse: yes
+    owner: omeka
+    group: www-data
+
+- name: Make files directory writable
+  file:
+    path: /var/www/omeka/files
+    owner: omeka
+    group: www-data
+    mode: 0775
+
+- name: Restart Apache
+  action: service name=apache2 state=restarted enabled=true

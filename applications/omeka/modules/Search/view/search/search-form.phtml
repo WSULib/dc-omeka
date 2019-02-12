@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ * @var \Zend\Form\Form $form
+ */
+
+?>
+<?php $form->prepare(); ?>
+<?php echo $this->form()->openTag($form); ?>
+<?php echo $this->formCollection($form, false); ?>
+<?php echo $this->form()->closeTag(); ?>

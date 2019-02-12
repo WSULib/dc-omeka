@@ -1,0 +1,13 @@
+[Unit]
+Description=Solr Document Store
+Requires=docker.service
+
+[Service]
+ExecStartPre=/bin/sleep 1
+ExecStartPre=/usr/bin/docker pull solr:latest
+ExecStart=/usr/bin/docker run --restart=always --volume=/opt/solr/omeka:/opt/solr/server/solr/omeka --name=my_solr -p=8983:8983 solr:latest
+ExecStop=/usr/bin/docker stop my_solr
+ExecStopPost=/usr/bin/docker rm -f my_solr
+ExecReload=/usr/bin/docker restart my_solr
+[Install]
+WantedBy=multi-user.target

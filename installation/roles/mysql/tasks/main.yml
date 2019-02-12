@@ -1,0 +1,47 @@
+---
+
+- name: Set MySQL root password
+  mysql_user: name=root host={{ item }} password={{ mysql_root_password }} state=present
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: Change MySQL bind address
+  ini_file: dest=/etc/mysql/mysql.conf.d/mysqld.cnf
+            section=mysqld
+            option=bind-address
+            value=0.0.0.0
+
+- name: Update my.cnf
+  ini_file: dest=/etc/mysql/my.cnf
+            section=mysqld
+            option=wait_timeout
+            value=31536000
+            state=present
+
+- name: Update my.cnf
+  ini_file: dest=/etc/mysql/my.cnf
+            section=mysqld
+            option=interactive_timeout
+            value=31536000
+            state=present
+
+- name: Are root credentials for MySQL already there?
+  stat:
+    path: /root/.my.cnf
+  register: mysql_config
+  changed_when: mysql_config.stat.exists == False
+
+- name: Copy the root credentials as .my.cnf file
+  template:
+    src: root.cnf
+    dest: /root/.my.cnf
+    owner: root
+    mode: 0600
+  when: mysql_config.stat.exists == False
+
+- name: Restart MySQL
+  action: service name=mysql state=restarted enabled=true
+  when: mysql_config.stat.exists == False

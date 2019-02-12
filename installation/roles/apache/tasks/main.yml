@@ -1,0 +1,52 @@
+---
+
+- apache2_module:
+    state: present
+    name: cache 
+
+- apache2_module:
+    state: present
+    name: cgi 
+
+- apache2_module:
+    state: present
+    name: cache_disk 
+
+- apache2_module:
+    state: present
+    name: expires 
+
+- apache2_module:
+    state: present
+    name: headers 
+
+- apache2_module:
+    state: present
+    name: proxy 
+
+- apache2_module:
+    state: present
+    name: proxy_ajp 
+
+- apache2_module:
+    state: present
+    name: proxy_connect 
+
+- apache2_module:
+    state: present
+    name: proxy_http 
+
+- apache2_module:
+    state: present
+    name: reqtimeout 
+
+- apache2_module:
+    state: present
+    name: rewrite 
+
+- apache2_module:
+    state: present
+    name: ssl
+
+- name: Restart Apache
+  action: service name=apache2 state=restarted enabled=true
