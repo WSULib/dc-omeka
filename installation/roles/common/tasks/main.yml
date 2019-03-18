@@ -31,7 +31,6 @@
     or
     ansible_distribution == 'Ubuntu'
 
-# from bootstrap.yml
 - name: install latest version of a series of packages
   package:
     name: "{{ item }}"

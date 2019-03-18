@@ -2,7 +2,7 @@
 
 - name: Is Omeka-S already installed?
   stat:
-    path: /var/www/omeka
+    path: /opt/dc-omeka
   register: omeka_installed
   changed_when: omeka_installed.stat.exists == False
 
@@ -15,10 +15,9 @@
 
 - name: Set permissions
   file:
-    path: /var/www/omeka
+    path: /opt/dc-omeka
     recurse: yes
-    owner: peacock
-    group: www-data
+    owner: omeka
 
 - name: Copy the omeka.sql file to tmp
   template:
@@ -62,16 +61,14 @@
 
 - name: Reset permissions
   file:
-    path: /var/www/omeka
+    path: /opt/dc-omeka/omeka
     recurse: yes
     owner: omeka
-    group: www-data
 
 - name: Make files directory writable
   file:
-    path: /var/www/omeka/files
+    path: /opt/dc-omeka/files
     owner: omeka
-    group: www-data
     mode: 0775
 
 - name: Restart Apache
