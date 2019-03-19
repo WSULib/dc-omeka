@@ -60,7 +60,7 @@
   cron:
     name: "MySQL backup"
     special_time: weekly
-    job: "mysqldump --all-databases -uroot -p{{ mysql_password }} > /opt/backups/all-databases-$(date "+%b_%d_%Y_%H_%M_%S").sql"
+    job: "mysqldump --all-databases -uroot -p{{ mysql_password }} > /opt/backups/all-databases-$(date '+%b_%d_%Y_%H_%M_%S').sql"
 
 - name: Configure Cron job for backing up Solr data
   cron:
