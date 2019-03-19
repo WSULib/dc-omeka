@@ -2,7 +2,7 @@ Restore Backup Instructions
 
 
 MySQL 
-cat NAME_OF_BACKUP.sql | docker exec -i mysql /usr/bin/mysql -u root --password=YOUR_PASSWORD
+cat NAME_OF_BACKUP.sql | /usr/bin/mysql -u root --password=YOUR_PASSWORD
 
 Solr
 curl http://localhost:8983/solr/omeka/replication?command=restore&location=/opt/backups
