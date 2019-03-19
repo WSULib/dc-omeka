@@ -2,20 +2,20 @@
 
 - name: Is Omeka-S already installed?
   stat:
-    path: /opt/dc-omeka
+    path: /var/www/dc-omeka
   register: omeka_installed
   changed_when: omeka_installed.stat.exists == False
 
 - name: Clone dc-omeka Github repository
   git:
     repo: https://github.com/WSULib/dc-omeka.git
-    dest: /opt/dc-omeka
+    dest: /var/www/dc-omeka
     version: "{{ git_branch }}"
   when: omeka_installed.stat.exists == False
 
 - name: Set permissions
   file:
-    path: /opt/dc-omeka
+    path: /var/www/dc-omeka
     recurse: yes
     owner: omeka
 
@@ -50,24 +50,24 @@
 - name: Configure database.ini
   template:
     src: database.ini
-    dest: /var/www/omeka/config/database.ini
+    dest: /var/www/dc-omeka/config/database.ini
   when: omeka_installed.stat.exists == False
 
 - name: Copy local.config.php
   template:
     src: local.config.php
-    dest: /var/www/omeka/config/local.config.php
+    dest: /var/www/dc-omeka/config/local.config.php
   when: omeka_installed.stat.exists == False
 
 - name: Reset permissions
   file:
-    path: /opt/dc-omeka/omeka
+    path: /var/www/dc-omeka/omeka
     recurse: yes
     owner: omeka
 
 - name: Make files directory writable
   file:
-    path: /opt/dc-omeka/files
+    path: /var/www/dc-omeka/files
     owner: omeka
     mode: 0775
 
