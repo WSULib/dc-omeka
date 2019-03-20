@@ -10,4 +10,5 @@
     - mysql
     - apache
     - omeka
+    - docker
     - solr
